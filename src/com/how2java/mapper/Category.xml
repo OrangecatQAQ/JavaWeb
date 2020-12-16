@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	<mapper namespace="com.how2java.mapper.CategoryMapper">
+	    <insert id="add" parameterType="Customer" >
+	        insert into customer ( customer_no, customer_eng_name, customer_kanji_name, establish_date, employee_number,  capital)  
+	        values (#{customer_no}, #{customer_eng_name}, #{customer_kanji_name}, #{establish_date}, #{employee_number}, #{capital})      
+	    </insert>
+	    
+	    <delete id="delete" parameterType="Customer" >
+	        delete from customer where customer_no = #{customer_no}   
+	    </delete>
+	    
+	    <select id="get" parameterType="_int" resultType="Customer">
+	        select * from   customer  where customer_no= #{customer_no}    
+	    </select>
+
+	    <update id="update" parameterType="Customer" >
+	        update customer set 
+	       customer_eng_name=#{customer_eng_name}, 
+	        establish_date=#{establish_date},
+	        employee_number=#{employee_number},
+	        capital=#{capital},
+	        customer_kanji_name=#{customer_kanji_name}
+	        where customer_no=#{customer_no}    
+	    </update>
+	    <select id="list" resultType="Customer">
+            select * from   customer     
+        </select>	    
+        
+         <select id="search"  parameterType="string" resultType="customer">
+            select * from   customer where customer_eng_name like concat('%',#{0},'%')
+
+
+        </select>  
+        
+        
+	</mapper>
+
